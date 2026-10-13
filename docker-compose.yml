@@ -1,0 +1,68 @@
+# Local development: `docker compose up -d` starts Postgres (port 5433) and a
+# Mailpit SMTP inbox (UI at http://localhost:8025) for magic-link emails.
+#
+# Self-hosting: `docker compose --profile app up -d --build` additionally runs
+# the app (port 3000) and a cron sidecar that calls the scheduled endpoints.
+# Configure secrets in `.env` (see .env.example and docs/self-hosting.md).
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: calendblade
+      POSTGRES_PASSWORD: calendblade
+      POSTGRES_DB: calendblade
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U calendblade"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  mailpit:
+    image: axllent/mailpit:v1.27
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+  app:
+    profiles: ["app"]
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+    env_file: .env
+    environment:
+      DATABASE_URL: postgres://calendblade:calendblade@postgres:5432/calendblade
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # Calls the scheduled endpoints: sync every 5 min, renew-watches every 6 h,
+  # housekeeping once a day after 03:00 UTC.
+  cron:
+    profiles: ["app"]
+    image: curlimages/curl:8.11.1
+    env_file: .env
+    depends_on:
+      - app
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        call() { curl -fsS -H "Authorization: Bearer $$CRON_SECRET" "http://app:3000/api/cron/$$1" || true; echo; }
+        i=0; last=""
+        while true; do
+          call sync
+          [ $$((i % 72)) -eq 0 ] && call renew-watches
+          today=$$(date -u +%F)
+          if [ "$$(date -u +%H)" = "03" ] && [ "$$last" != "$$today" ]; then call housekeeping; last=$$today; fi
+          i=$$((i + 1))
+          sleep 300
+        done
+
+volumes:
+  postgres-data:

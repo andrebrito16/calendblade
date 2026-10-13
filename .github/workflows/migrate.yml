@@ -1,0 +1,28 @@
+name: Migrate production database
+
+# Runs migrations on merge to main before the hosting provider promotes the
+# deploy. Requires the DATABASE_URL_UNPOOLED repository secret; forks without
+# it skip this job.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.0
+      - run: bun install --frozen-lockfile
+      - name: Apply migrations
+        env:
+          DATABASE_URL_UNPOOLED: ${{ secrets.DATABASE_URL_UNPOOLED }}
+        run: |
+          if [ -z "$DATABASE_URL_UNPOOLED" ]; then echo "No DATABASE_URL_UNPOOLED secret; skipping."; exit 0; fi
+          DATABASE_URL="$DATABASE_URL_UNPOOLED" bun run db:migrate

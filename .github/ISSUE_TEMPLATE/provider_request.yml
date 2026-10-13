@@ -1,0 +1,29 @@
+name: Calendar provider request
+description: Ask for support for another calendar provider
+labels: ["provider", "triage"]
+body:
+  - type: input
+    id: provider
+    attributes:
+      label: Provider
+      placeholder: e.g. Microsoft 365 / Outlook, iCloud (CalDAV), Fastmail, Proton
+    validations:
+      required: true
+  - type: textarea
+    id: use-case
+    attributes:
+      label: How would you use it?
+      description: Which calendars would you sync, and in which direction?
+    validations:
+      required: true
+  - type: textarea
+    id: api
+    attributes:
+      label: API notes
+      description: Known APIs (incremental sync, push notifications, custom properties) if you know them.
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contribution
+      options:
+        - label: I'd like to help implement it (see "Adding a calendar provider" in CONTRIBUTING.md)
