@@ -8,6 +8,9 @@
  * calm indigo used for primary actions, focus rings and the "mirror" motif.
  */
 :root {
+  /* Motion curves: stronger than the built-in keywords. */
+  --ease-strong-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-strong-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --radius: 0.5rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -148,4 +151,109 @@ html[data-input="pointer"] :focus-visible:not(input, textarea, [contenteditable=
   --tw-ring-shadow: 0 0 #0000 !important;
   /* biome-ignore lint/complexity/noImportantStyles: must beat utility focus rings */
   --tw-ring-offset-shadow: 0 0 #0000 !important;
+}
+
+/*
+ * Landing page motion. The hero plays once on load (CSS animations stay smooth
+ * while the page hydrates); sections below the fold reveal once via
+ * <ScrollReveal />, which only hides what is still off screen, so nothing is
+ * hidden without JS.
+ */
+@keyframes marketing-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+@keyframes marketing-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+/* Mirrored blocks wipe in from the side of the calendar they were copied from. */
+@keyframes marketing-wipe-from-left {
+  from {
+    clip-path: inset(0 100% 0 0 round 6px);
+  }
+}
+@keyframes marketing-wipe-from-right {
+  from {
+    clip-path: inset(0 0 0 100% round 6px);
+  }
+}
+@keyframes marketing-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+.marketing-stagger > * {
+  animation: marketing-rise 600ms var(--ease-strong-out) backwards;
+}
+.marketing-stagger > :nth-child(2) {
+  animation-delay: 60ms;
+}
+.marketing-stagger > :nth-child(3) {
+  animation-delay: 120ms;
+}
+.marketing-stagger > :nth-child(4) {
+  animation-delay: 180ms;
+}
+.marketing-stagger > :nth-child(5) {
+  animation-delay: 240ms;
+}
+.marketing-pop {
+  animation: marketing-pop 400ms var(--ease-strong-out) backwards;
+}
+.marketing-wipe-from-left {
+  animation: marketing-wipe-from-left 500ms var(--ease-strong-in-out) backwards;
+}
+.marketing-wipe-from-right {
+  animation: marketing-wipe-from-right 500ms var(--ease-strong-in-out) backwards;
+}
+
+[data-reveal]:not([data-reveal-stagger]),
+[data-reveal-stagger] > * {
+  transition:
+    opacity 600ms var(--ease-strong-out),
+    transform 600ms var(--ease-strong-out);
+}
+[data-reveal="pending"]:not([data-reveal-stagger]),
+[data-reveal-stagger][data-reveal="pending"] > * {
+  opacity: 0;
+  transform: translateY(12px);
+}
+[data-reveal-stagger] > :nth-child(2) {
+  transition-delay: 60ms;
+}
+[data-reveal-stagger] > :nth-child(3) {
+  transition-delay: 120ms;
+}
+[data-reveal-stagger] > :nth-child(4) {
+  transition-delay: 180ms;
+}
+[data-reveal-stagger] > :nth-child(5) {
+  transition-delay: 240ms;
+}
+[data-reveal-stagger] > :nth-child(6) {
+  transition-delay: 300ms;
+}
+
+/* Reduced motion: keep the fades (they still tell the sync story), drop the movement. */
+@media (prefers-reduced-motion: reduce) {
+  .marketing-stagger > *,
+  .marketing-pop,
+  .marketing-wipe-from-left,
+  .marketing-wipe-from-right {
+    animation-name: marketing-fade;
+  }
+  [data-reveal]:not([data-reveal-stagger]),
+  [data-reveal-stagger] > * {
+    transition-property: opacity;
+  }
+  [data-reveal="pending"]:not([data-reveal-stagger]),
+  [data-reveal-stagger][data-reveal="pending"] > * {
+    transform: none;
+  }
 }

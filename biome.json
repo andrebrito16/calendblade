@@ -18,7 +18,8 @@
       "!playwright-report",
       "!test-results",
       "!coverage",
-      "!plan"
+      "!plan",
+      "!.release-please-manifest.json"
     ]
   },
   "formatter": {

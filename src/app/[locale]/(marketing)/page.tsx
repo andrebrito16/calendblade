@@ -16,6 +16,7 @@ import {
 import { cacheLife } from "next/cache";
 import { getFormatter, getTranslations } from "next-intl/server";
 import { MirrorPreview } from "@/components/marketing/mirror-preview";
+import { ScrollReveal } from "@/components/marketing/scroll-reveal";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { brand } from "@/lib/brand";
@@ -48,7 +49,7 @@ export default async function LandingPage({ params }: PageProps<"/[locale]">) {
     <>
       <section className="relative overflow-hidden">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-2">
-          <div className="space-y-6">
+          <div className="marketing-stagger space-y-6">
             <p className="inline-flex items-center gap-2 rounded-full border bg-accent/60 px-3 py-1 text-xs font-medium text-accent-foreground">
               <Sparkles className="size-3.5" aria-hidden="true" />
               {t("hero.eyebrow")}
@@ -84,11 +85,11 @@ export default async function LandingPage({ params }: PageProps<"/[locale]">) {
 
       <section id="how" className="scroll-mt-20 border-t bg-muted/30">
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <div className="mx-auto mb-12 max-w-2xl space-y-3 text-center">
+          <div data-reveal className="mx-auto mb-12 max-w-2xl space-y-3 text-center">
             <h2 className="text-3xl font-semibold tracking-tight">{t("how.title")}</h2>
             <p className="text-muted-foreground">{t("how.subtitle")}</p>
           </div>
-          <ol className="grid gap-6 md:grid-cols-3">
+          <ol data-reveal data-reveal-stagger className="grid gap-6 md:grid-cols-3">
             {(
               [
                 [CalendarPlus, "step1"],
@@ -112,11 +113,11 @@ export default async function LandingPage({ params }: PageProps<"/[locale]">) {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <div className="mx-auto mb-12 max-w-2xl space-y-3 text-center">
+        <div data-reveal className="mx-auto mb-12 max-w-2xl space-y-3 text-center">
           <h2 className="text-3xl font-semibold tracking-tight text-balance">{t("modes.title")}</h2>
           <p className="text-muted-foreground">{t("modes.subtitle")}</p>
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div data-reveal data-reveal-stagger className="grid gap-6 md:grid-cols-3">
           <Feature icon={FileLock2} title={t("modes.fullTitle")} body={t("modes.fullBody")} />
           <Feature icon={EyeOff} title={t("modes.busyTitle")} body={t("modes.busyBody")} />
           <Feature icon={ArrowLeftRight} title={t("modes.twoWayTitle")} body={t("modes.twoWayBody")} />
@@ -125,10 +126,10 @@ export default async function LandingPage({ params }: PageProps<"/[locale]">) {
 
       <section className="border-y bg-muted/30">
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <h2 className="mb-12 text-center text-3xl font-semibold tracking-tight text-balance">
+          <h2 data-reveal className="mb-12 text-center text-3xl font-semibold tracking-tight text-balance">
             {t("privacy.title")}
           </h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div data-reveal data-reveal-stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <Feature icon={ShieldCheck} title={t("privacy.tokensTitle")} body={t("privacy.tokensBody")} />
             <Feature icon={EyeOff} title={t("privacy.contentTitle")} body={t("privacy.contentBody")} />
             <Feature icon={MailX} title={t("privacy.noInvitesTitle")} body={t("privacy.noInvitesBody")} />
@@ -139,7 +140,10 @@ export default async function LandingPage({ params }: PageProps<"/[locale]">) {
 
       {billing ? (
         <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <div className="flex flex-col items-start justify-between gap-6 rounded-2xl border bg-card p-8 md:flex-row md:items-center">
+          <div
+            data-reveal
+            className="flex flex-col items-start justify-between gap-6 rounded-2xl border bg-card p-8 md:flex-row md:items-center"
+          >
             <div className="space-y-2">
               <h2 className="text-2xl font-semibold tracking-tight">{t("pricingTeaser.title")}</h2>
               <p className="max-w-xl text-muted-foreground">{t("pricingTeaser.subtitle")}</p>
@@ -159,8 +163,10 @@ export default async function LandingPage({ params }: PageProps<"/[locale]">) {
       ) : null}
 
       <section id="faq" className="mx-auto max-w-3xl scroll-mt-20 px-4 py-20 sm:px-6">
-        <h2 className="mb-8 text-center text-3xl font-semibold tracking-tight">{t("faq.title")}</h2>
-        <div className="divide-y rounded-xl border bg-card">
+        <h2 data-reveal className="mb-8 text-center text-3xl font-semibold tracking-tight">
+          {t("faq.title")}
+        </h2>
+        <div data-reveal className="divide-y rounded-xl border bg-card">
           {(["1", "2", "3", "4", ...(billing ? ["5"] : []), "6"] as const).map((n) => (
             <details key={n} className="group px-5 py-4 [&_summary::-webkit-details-marker]:hidden">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-md font-medium focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
@@ -179,7 +185,10 @@ export default async function LandingPage({ params }: PageProps<"/[locale]">) {
       </section>
 
       <section className="px-4 pb-20 sm:px-6">
-        <div className="mx-auto max-w-6xl rounded-2xl bg-primary px-6 py-14 text-center text-primary-foreground sm:px-12">
+        <div
+          data-reveal
+          className="mx-auto max-w-6xl rounded-2xl bg-primary px-6 py-14 text-center text-primary-foreground sm:px-12"
+        >
           <h2 className="text-3xl font-semibold tracking-tight text-balance">{t("finalCta.title")}</h2>
           <p className="mx-auto mt-3 max-w-xl opacity-90">{t("finalCta.subtitle")}</p>
           <Button asChild size="lg" variant="secondary" className="mt-8">
@@ -189,6 +198,7 @@ export default async function LandingPage({ params }: PageProps<"/[locale]">) {
           </Button>
         </div>
       </section>
+      <ScrollReveal />
     </>
   );
 }
