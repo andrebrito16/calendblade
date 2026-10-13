@@ -13,7 +13,6 @@ export type Plan = {
 };
 
 export const TRIAL_DAYS = 7;
-export const TRIAL_MAX_CALENDARS = 2;
 export const PAST_DUE_GRACE_DAYS = 7;
 export const PAUSED_DATA_RETENTION_DAYS = 30;
 

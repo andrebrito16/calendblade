@@ -1,4 +1,4 @@
-import { isPlanId, PAST_DUE_GRACE_DAYS, type PlanId, plans, TRIAL_MAX_CALENDARS } from "@/lib/plans";
+import { isPlanId, PAST_DUE_GRACE_DAYS, type PlanId, plans } from "@/lib/plans";
 
 export type EntitlementPlan = "none" | "trial" | "pro" | "max" | "paused";
 
@@ -34,7 +34,7 @@ const LIVE_STATUSES = ["trialing", "active", "past_due"];
 /**
  * Pure entitlement resolution (fully unit-tested):
  * - billing disabled (self-host) → unlimited
- * - trialing → chosen plan's rules, but at most 2 calendars
+ * - trialing → the chosen plan's limits
  * - active, or past_due within the 7-day grace → the plan's limits
  * - anything else → `paused` if they ever subscribed, `none` otherwise
  */
@@ -73,7 +73,7 @@ export function resolveEntitlements(
       return {
         ...details,
         plan: "trial",
-        maxCalendars: Math.min(TRIAL_MAX_CALENDARS, plan.maxCalendars),
+        maxCalendars: plan.maxCalendars,
         maxRules: plan.maxRules,
         canSync: true,
       };

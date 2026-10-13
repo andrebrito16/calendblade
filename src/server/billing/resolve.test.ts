@@ -40,9 +40,9 @@ describe("resolveEntitlements", () => {
     });
   });
 
-  it("trialing Max → still 2 calendars, unlimited rules", () => {
+  it("trialing Max → Max limits: 15 calendars, unlimited rules", () => {
     const result = resolve([sub({ plan: "max", status: "trialing" })]);
-    expect(result).toMatchObject({ plan: "trial", planId: "max", maxCalendars: 2 });
+    expect(result).toMatchObject({ plan: "trial", planId: "max", maxCalendars: 15 });
     expect(result.maxRules).toBe(Number.POSITIVE_INFINITY);
   });
 
