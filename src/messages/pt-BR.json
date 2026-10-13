@@ -1,0 +1,983 @@
+{
+  "metadata": {
+    "title": "{brand} — keep every calendar in sync",
+    "description": "Mirror events between your Google calendars. Full details or private busy blocks, one-way or two-way, set up in a minute."
+  },
+  "common": {
+    "appName": "{brand}",
+    "loading": "Loading…",
+    "save": "Save",
+    "saving": "Saving…",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "continue": "Continue",
+    "skip": "Skip for now",
+    "close": "Close",
+    "retry": "Try again",
+    "learnMore": "Learn more",
+    "manage": "Manage",
+    "never": "Never",
+    "none": "None",
+    "unlimited": "Unlimited",
+    "or": "or",
+    "comingSoon": "Coming soon",
+    "copied": "Copied",
+    "perMonth": "/month",
+    "goToApp": "Go to app",
+    "signIn": "Sign in",
+    "getStarted": "Start free trial",
+    "getStartedSelfHost": "Get started",
+    "openMenu": "Open menu",
+    "toggleTheme": "Toggle theme",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeSystem": "System",
+    "skipToContent": "Skip to content",
+    "required": "Required",
+    "optional": "Optional"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "connections": "Connections",
+    "rules": "Rules",
+    "activity": "Activity",
+    "settings": "Settings",
+    "billing": "Billing",
+    "onboarding": "Get started",
+    "pricing": "Pricing",
+    "howItWorks": "How it works",
+    "privacy": "Privacy",
+    "faq": "FAQ",
+    "signOut": "Sign out",
+    "account": "Account",
+    "mainNavigation": "Main navigation",
+    "breadcrumb": "Breadcrumb",
+    "syncIdle": "All synced",
+    "syncPending": "{count, plural, one {# sync queued} other {# syncs queued}}",
+    "syncStatus": "Sync status",
+    "breadcrumbNew": "New",
+    "breadcrumbDetails": "Details"
+  },
+  "marketing": {
+    "hero": {
+      "eyebrow": "Calendar sync for people with more than one calendar",
+      "title": "One schedule. Every calendar.",
+      "subtitle": "Mirror events from your work, personal and family calendars into each other, with full details or as private “Busy” blocks. Nobody double-books you again.",
+      "primaryCta": "Start your 7-day free trial",
+      "primaryCtaSelfHost": "Get started",
+      "secondaryCta": "See how it works",
+      "trialNote": "7 days free · cancel anytime"
+    },
+    "preview": {
+      "work": "Work",
+      "personal": "Personal",
+      "standup": "Team standup",
+      "dentist": "Dentist",
+      "busy": "Busy",
+      "mirrored": "Mirrored by {brand}"
+    },
+    "how": {
+      "title": "Set up in about a minute",
+      "subtitle": "Three steps, then it runs on its own.",
+      "step1Title": "Connect your Google accounts",
+      "step1Body": "Add as many Google accounts as your plan allows: work, personal, a shared family calendar.",
+      "step2Title": "Create a sync rule",
+      "step2Body": "Pick a source calendar, a target calendar, and how much detail the copy should carry.",
+      "step3Title": "Done. It stays in sync",
+      "step3Body": "New, moved and cancelled events are mirrored within seconds via push notifications, with a safety-net check every few minutes."
+    },
+    "modes": {
+      "title": "Full details or just “Busy”. Your call, per rule.",
+      "subtitle": "Share what you want, hide what you don't.",
+      "fullTitle": "Full details",
+      "fullBody": "Title, description, location and the guest list (as text) are copied. Ideal between your own calendars.",
+      "busyTitle": "Busy only",
+      "busyBody": "An opaque, private block with no details. Colleagues see you're unavailable, and nothing else.",
+      "twoWayTitle": "Two-way sync",
+      "twoWayBody": "Create two rules in opposite directions. Loop protection makes sure mirrors are never mirrored back."
+    },
+    "privacy": {
+      "title": "Built to be trusted with your calendar",
+      "tokensTitle": "Encrypted tokens",
+      "tokensBody": "Google access tokens are encrypted at rest with AES-256-GCM and never leave our servers.",
+      "contentTitle": "No event content stored",
+      "contentBody": "We keep only event ids and a fingerprint to detect changes. Titles and descriptions pass through, they are not kept.",
+      "openTitle": "Open source",
+      "openBody": "The code is AGPL-3.0 licensed. Read it, audit it, or run your own instance.",
+      "noInvitesTitle": "No surprise invitations",
+      "noInvitesBody": "Mirrors never carry attendees and have reminders turned off, so nobody gets an email and you never get a double notification."
+    },
+    "pricingTeaser": {
+      "title": "Simple pricing",
+      "subtitle": "Start with a 7-day free trial. Pick the plan that fits how many calendars you juggle.",
+      "cta": "Compare plans"
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "q1": "Which calendars are supported?",
+      "a1": "Google Calendar today, including Google Workspace accounts and calendars shared with you. Microsoft 365 and iCloud are on the roadmap.",
+      "q2": "Will my colleagues see my private appointments?",
+      "a2": "Only if you choose “Full details”. With “Busy only” they see an opaque block marked private, with no title, description or location.",
+      "q3": "What happens if I create rules in both directions?",
+      "a3": "That's a two-way sync, and it's safe: every mirror is tagged, and tagged events are never mirrored again.",
+      "q4": "Do guests get invitations from the mirrored events?",
+      "a4": "No. Mirrors never include attendees; in full-details mode the guest list is added to the description as text.",
+      "q5": "What happens when my trial ends?",
+      "a5": "Your card is charged and syncing continues. If you cancel, syncing pauses and your data is kept for 30 days in case you come back. Mirrored events already in your calendars stay where they are.",
+      "q6": "Can I host it myself?",
+      "a6": "Yes. The project is open source; you need Postgres, an SMTP server and your own Google OAuth app."
+    },
+    "finalCta": {
+      "title": "Stop copying events by hand",
+      "subtitle": "Connect your first calendar in under a minute."
+    },
+    "footer": {
+      "tagline": "Calendar mirroring for busy people.",
+      "product": "Product",
+      "legal": "Legal",
+      "openSource": "Open source",
+      "source": "Source code",
+      "selfHost": "Self-hosting",
+      "rights": "© {year} {entity}",
+      "trademark": "The code is open source; the {brand} name and logo are not."
+    }
+  },
+  "pricing": {
+    "title": "Pricing",
+    "subtitle": "Every plan starts with a 7-day free trial. Card required, cancel anytime before day 8 and you won't be charged.",
+    "pro": "Pro",
+    "max": "Max",
+    "proTagline": "For one work and one personal calendar.",
+    "maxTagline": "For people who juggle many calendars.",
+    "popular": "Most popular",
+    "calendars": "{count, plural, one {# connected calendar} other {# connected calendars}}",
+    "rules": "{count, plural, one {# sync rule} other {# sync rules}}",
+    "unlimitedRules": "Unlimited sync rules",
+    "featureModes": "Full-details and busy-only modes",
+    "featureTwoWay": "Two-way sync with loop protection",
+    "featurePush": "Near real-time push updates",
+    "featureFilters": "Filters for all-day, declined, tentative and private events",
+    "featureSupport": "Email support",
+    "cta": "Start 7-day free trial",
+    "trialExplainerTitle": "How the free trial works",
+    "trialExplainer1": "Pick a plan and add a card. You pay nothing today.",
+    "trialExplainer2": "Connect up to 2 calendars and create rules during the 7 days.",
+    "trialExplainer3": "On day 8 your plan starts. Cancel anytime before that and you won't be charged.",
+    "compareTitle": "Compare plans",
+    "feature": "Feature",
+    "connectedCalendars": "Connected calendars",
+    "syncRules": "Sync rules",
+    "syncModes": "Full and busy modes",
+    "pushUpdates": "Push updates",
+    "filters": "Event filters",
+    "priceNote": "Prices in USD, billed monthly. Taxes may apply.",
+    "selfHostTitle": "Running your own instance?",
+    "selfHostBody": "Billing is disabled on this instance, so every account has unlimited calendars and rules.",
+    "included": "Included"
+  },
+  "legal": {
+    "privacyTitle": "Privacy policy",
+    "termsTitle": "Terms of service",
+    "lastUpdated": "Last updated {date}",
+    "effectiveDate": "2026-10-13",
+    "contactLine": "Questions about your data? Email {privacyEmail}.",
+    "privacyIntro": "This policy explains how {brand}, operated by {entity}, processes personal data when you use the hosted service, in line with the EU General Data Protection Regulation (GDPR), the UK GDPR and Brazil's Lei Geral de Proteção de Dados (LGPD, Law 13.709/2018). Self-hosted instances are operated, and controlled, by whoever runs them.",
+    "privacySections": [
+      {
+        "title": "Who is responsible (controller)",
+        "paragraphs": [
+          "The controller of your personal data is {entity}.",
+          "Registered address: {address}.",
+          "Our Data Protection Officer (Encarregado pelo tratamento de dados pessoais, under the LGPD) is {dpo}, reachable at {privacyEmail}.",
+          "You can reach us about any privacy matter at {privacyEmail}.",
+          "Our representative in the European Union (Article 27 GDPR) is {euRep}."
+        ]
+      },
+      {
+        "title": "Personal data we process",
+        "paragraphs": [
+          "Account data: your name, email address, time zone, language and, if you sign in with Google, your profile picture.",
+          "Connected calendar accounts: the email address of each Google account you connect and the OAuth tokens Google issues to us, encrypted at rest with AES-256-GCM.",
+          "Calendar metadata: identifiers, names, colors and access level of the calendars in the accounts you connect.",
+          "Sync bookkeeping: for each mirrored event, its identifiers, start and end time and a one-way fingerprint (SHA-256) used to detect changes. We do not store event titles, descriptions, locations or guest lists: they pass through our servers only while a mirror is written.",
+          "Activity logs: when each sync ran, what it changed (counts only) and error codes.",
+          "Billing data: Stripe customer and subscription identifiers, plan and status. Card details are collected and stored by Stripe, never by us.",
+          "Technical data: IP address and user agent in session records and server logs, used for security.",
+          "Consent records: your cookie choices and when you made them.",
+          "Optional, only with your consent: error reports from your browser and product-usage events linked to a pseudonymous identifier."
+        ]
+      },
+      {
+        "title": "Why we process it and our legal bases",
+        "paragraphs": [
+          "To provide the service you signed up for (create your account, sign you in, read and write the calendars you choose, send transactional emails such as sign-in links): performance of a contract (GDPR Art. 6(1)(b); LGPD Art. 7, V).",
+          "To keep the service secure and reliable (session security, rate limiting, abuse prevention, server-side error monitoring without personal identifiers): our legitimate interests (GDPR Art. 6(1)(f); LGPD Art. 7, IX). You can object at any time.",
+          "To bill your subscription and keep accounting and tax records: performance of a contract and compliance with legal obligations (GDPR Art. 6(1)(b) and (c); LGPD Art. 7, II and V).",
+          "Browser error monitoring and product analytics: your consent (GDPR Art. 6(1)(a); ePrivacy rules; LGPD Art. 7, I). They stay off unless you opt in, and you can withdraw consent at any time in Cookie settings without affecting earlier processing.",
+          "Optional notification emails (for example, when a connected account needs attention): legitimate interests; you can turn them off in Settings.",
+          "We do not sell personal data, do not use it for advertising and do not make decisions about you based solely on automated processing that produce legal or similarly significant effects."
+        ]
+      },
+      {
+        "title": "Google user data",
+        "paragraphs": [
+          "We request access to Google Calendar only to provide the feature you configure: reading events from the calendars you choose as a source and creating, updating or deleting mirrored events in the calendars you choose as a target. We never send invitations: mirrored events have no attendees and no reminders.",
+          "{brand}'s use and transfer to any other app of information received from Google APIs will adhere to the Google API Services User Data Policy, including the Limited Use requirements. We do not use Google user data for advertising, do not sell it, do not use it to train artificial intelligence or machine learning models, and no human reads it unless you ask us to (for support), it is necessary for security, or it is required by law."
+        ]
+      },
+      {
+        "title": "Cookies",
+        "paragraphs": [
+          "We use strictly necessary cookies and local storage (sign-in session, security, language and display preferences, your consent choice). Optional technologies run only if you accept them. Our Cookie Policy lists every cookie, and Cookie settings in the footer lets you change your choice at any time."
+        ]
+      },
+      {
+        "title": "Who we share data with",
+        "paragraphs": [
+          "We use service providers (processors) that act only on our instructions under data processing agreements: application hosting, a managed PostgreSQL database, transactional email delivery, payments (Stripe), and, only with your consent for the browser, error monitoring (Sentry) and product analytics (PostHog). Google receives the calendar operations you configure. The current list of sub-processors is available on request at {privacyEmail}.",
+          "We may disclose data when required by law or to protect rights and safety, and to a successor if the service is transferred, in which case you will be notified."
+        ]
+      },
+      {
+        "title": "International transfers",
+        "paragraphs": [
+          "Some providers process data outside your country, including in the United States. For transfers from the EEA, UK or Switzerland we rely on adequacy decisions (including the EU-U.S. Data Privacy Framework where the provider is certified) or on the European Commission's Standard Contractual Clauses. For transfers from Brazil we rely on the mechanisms of LGPD Article 33, including the standard contractual clauses approved by the ANPD. You can request a copy of the relevant safeguards at {privacyEmail}."
+        ]
+      },
+      {
+        "title": "How long we keep data",
+        "paragraphs": [
+          "Account, connection, calendar and rule data: while your account exists.",
+          "Sync activity logs: 90 days. Records of mirrors we removed: 30 days.",
+          "If your subscription ends: syncing pauses and your connections, rules and logs are deleted 30 days later.",
+          "When you delete your account: we revoke our access to your Google accounts and delete your data from our database right away; encrypted backups expire within 7 days.",
+          "Billing records are kept for the period required by tax and accounting law. A hashed (non-reversible) form of your email is kept for up to 1 year after account deletion only to prevent repeated free trials.",
+          "Consent records: while your account exists; the cookie storing your choice expires after 6 months, when we ask again."
+        ]
+      },
+      {
+        "title": "Your rights",
+        "paragraphs": [
+          "Under the GDPR you have the right to access, rectify, erase, restrict and port your data, to object to processing based on legitimate interests, to withdraw consent at any time, and not to be subject to solely automated decisions.",
+          "Under the LGPD (Art. 18) you have the right to confirmation that we process your data; access; correction of incomplete, inaccurate or outdated data; anonymization, blocking or deletion of unnecessary or excessive data; portability; deletion of data processed with your consent; information about the entities we share data with; information about the possibility of not giving consent and its consequences; and revocation of consent.",
+          "You can exercise most rights yourself: edit your profile in Settings, download your data (Settings → Privacy → Download my data), change cookie choices (Cookie settings) and delete your account (Settings → Danger zone). For anything else, email {privacyEmail}. We may need to verify your identity, and we respond within the legal deadlines (15 days for a complete access request under the LGPD; one month under the GDPR)."
+        ]
+      },
+      {
+        "title": "Complaints",
+        "paragraphs": [
+          "Please contact us first so we can help. You also have the right to lodge a complaint with a supervisory authority: in Brazil, the Autoridade Nacional de Proteção de Dados (ANPD, www.gov.br/anpd); in the EEA, the data protection authority of your country of residence, work or the place of the alleged infringement; in the UK, the Information Commissioner's Office (ico.org.uk)."
+        ]
+      },
+      {
+        "title": "Security",
+        "paragraphs": [
+          "Data is encrypted in transit with TLS. OAuth tokens are encrypted at rest and never sent to your browser. Access to production systems is restricted to the people who operate the service, and we would notify you and the competent authorities of a personal data breach where the law requires."
+        ]
+      },
+      {
+        "title": "Children",
+        "paragraphs": [
+          "{brand} is intended for adults (18+). We do not knowingly process data of children or adolescents. If you believe a minor has created an account, contact {privacyEmail} and we will delete it."
+        ]
+      },
+      {
+        "title": "Changes to this policy",
+        "paragraphs": [
+          "We will publish any change on this page with a new date and, for material changes, notify you by email before they take effect. Where a change requires your consent, we will ask for it."
+        ]
+      }
+    ],
+    "termsIntro": "These terms govern your use of the hosted {brand} service operated by {entity}. By creating an account you agree to them. If you use {brand} on behalf of an organization, you accept them for that organization.",
+    "termsSections": [
+      {
+        "title": "The service",
+        "paragraphs": [
+          "{brand} mirrors events between calendars you connect, according to the sync rules you create. You decide which calendars are read and which are written."
+        ]
+      },
+      {
+        "title": "Eligibility and your account",
+        "paragraphs": [
+          "You must be at least 18 years old and able to enter into a binding contract. Provide an email address you control and keep access to it secure. You are responsible for the activity on your account and for having the right to connect each calendar account you add."
+        ]
+      },
+      {
+        "title": "Subscriptions, free trial and payments",
+        "paragraphs": [
+          "Paid plans are billed monthly in US dollars through Stripe. New subscribers get a 7-day free trial; a card is required to start it and is charged when the trial ends unless you cancel before then. One free trial per person.",
+          "Subscriptions renew automatically each month until cancelled. You can cancel anytime from the billing page; you keep access until the end of the paid period.",
+          "We may change prices with at least 30 days' notice by email; changes apply from your next billing period, and you may cancel before they take effect."
+        ]
+      },
+      {
+        "title": "Your consumer rights and refunds",
+        "paragraphs": [
+          "Nothing in these terms limits rights you have under mandatory consumer law where you live.",
+          "If you are a consumer in the EU, EEA or UK, you may withdraw from a paid subscription within 14 days of the first charge; if you are a consumer in Brazil, you may exercise the right of regret (direito de arrependimento) within 7 days under Article 49 of the Consumer Defense Code. To do so, email {email}; we will refund the charge to your original payment method.",
+          "Outside these cases, fees already paid for a billing period are not refunded, except where required by law."
+        ]
+      },
+      {
+        "title": "Acceptable use",
+        "paragraphs": [
+          "Do not use {brand} to access calendars you are not authorized to use, to disrupt the service or the calendar providers, to circumvent plan limits, to reverse engineer the hosted service's security controls, or for anything unlawful."
+        ]
+      },
+      {
+        "title": "Your data and privacy",
+        "paragraphs": [
+          "You keep all rights to your calendar data. You authorize us to read and write it solely to operate the sync you configure. How we process personal data, including your rights under the GDPR and the LGPD, is described in our Privacy Policy, which forms part of these terms."
+        ]
+      },
+      {
+        "title": "Third-party services",
+        "paragraphs": [
+          "{brand} depends on calendar providers such as Google and on payment processors such as Stripe. Their terms apply to your use of their services, and changes or outages on their side can affect syncing."
+        ]
+      },
+      {
+        "title": "Availability and changes",
+        "paragraphs": [
+          "We work to keep the service reliable but do not guarantee uninterrupted operation. Sync is near real-time but not instantaneous. We may improve, change or discontinue features; if we discontinue the service we will give you at least 30 days' notice and refund any prepaid unused period."
+        ]
+      },
+      {
+        "title": "Disclaimer and liability",
+        "paragraphs": [
+          "To the extent permitted by law, the service is provided “as is”, we are not liable for indirect or consequential damages such as missed appointments, and our total liability is limited to the amount you paid us in the 12 months before the claim. These limits do not apply where the law does not allow them, including liability for gross negligence, wilful misconduct, death or personal injury, or rights consumers cannot waive."
+        ]
+      },
+      {
+        "title": "Suspension and termination",
+        "paragraphs": [
+          "You can stop using the service and delete your account at any time. We may suspend or terminate accounts that seriously or repeatedly breach these terms, with prior notice and an opportunity to remedy where reasonable."
+        ]
+      },
+      {
+        "title": "Open source",
+        "paragraphs": [
+          "The {brand} source code is available under the GNU AGPL-3.0 license. That license governs the code; these terms govern the hosted service. The {brand} name and logo are not licensed for use by forks."
+        ]
+      },
+      {
+        "title": "Governing law",
+        "paragraphs": [
+          "These terms are governed by the laws of {jurisdiction}. If you are a consumer, you also keep the protection of the mandatory laws of your country of residence and may bring claims before the courts of your domicile."
+        ]
+      },
+      {
+        "title": "Changes to these terms",
+        "paragraphs": [
+          "We may update these terms. For material changes we will notify you by email at least 30 days before they take effect; if you don't agree, you can cancel before then. Continuing to use the service afterwards means you accept them."
+        ]
+      },
+      {
+        "title": "Contact",
+        "paragraphs": ["Questions about these terms: {email}."]
+      }
+    ],
+    "cookiesTitle": "Cookie policy",
+    "cookiesIntro": "This policy explains which cookies and similar technologies (such as local storage) {brand} uses, why, and how you can control them. It complements our Privacy Policy.",
+    "cookiesSections": [
+      {
+        "title": "What we use and why",
+        "paragraphs": [
+          "Strictly necessary technologies make the service work (signing you in, protecting against attacks, remembering your language, display preferences and consent choice). The law does not require consent for them, and they can't be switched off.",
+          "Optional technologies (browser error monitoring and product analytics) are used only after you accept them in the cookie banner or in Cookie settings, and you can withdraw consent at any time. We do not use advertising or cross-site tracking cookies."
+        ]
+      },
+      {
+        "title": "How to control them",
+        "paragraphs": [
+          "Use Cookie settings (in the footer and in Settings → Privacy) to accept, reject or change optional categories. Withdrawing consent stops the optional tools and removes their storage from your browser. You can also block or delete cookies in your browser settings, but blocking strictly necessary cookies will prevent you from signing in."
+        ]
+      },
+      {
+        "title": "Changes",
+        "paragraphs": ["When we add a new optional category, we will ask for your consent again."]
+      }
+    ],
+    "cookieTable": {
+      "heading": "Cookies and storage we use",
+      "name": "Name",
+      "provider": "Provider",
+      "purpose": "Purpose",
+      "duration": "Duration",
+      "category": "Category",
+      "rows": [
+        {
+          "name": "better-auth.session_token",
+          "provider": "{brand}",
+          "purpose": "Keeps you signed in.",
+          "duration": "7 days",
+          "category": "Strictly necessary"
+        },
+        {
+          "name": "better-auth.session_data",
+          "provider": "{brand}",
+          "purpose": "Short-lived cache of your session to keep pages fast.",
+          "duration": "5 minutes",
+          "category": "Strictly necessary"
+        },
+        {
+          "name": "better-auth.dont_remember",
+          "provider": "{brand}",
+          "purpose": "Remembers that the session should end when you close the browser.",
+          "duration": "Session",
+          "category": "Strictly necessary"
+        },
+        {
+          "name": "cb_connect_nonce",
+          "provider": "{brand}",
+          "purpose": "Protects the Google account connection flow against forgery.",
+          "duration": "10 minutes",
+          "category": "Strictly necessary"
+        },
+        {
+          "name": "cb_consent",
+          "provider": "{brand}",
+          "purpose": "Stores your cookie choices.",
+          "duration": "6 months",
+          "category": "Strictly necessary"
+        },
+        {
+          "name": "NEXT_LOCALE",
+          "provider": "{brand}",
+          "purpose": "Remembers your language.",
+          "duration": "Session",
+          "category": "Strictly necessary"
+        },
+        {
+          "name": "sidebar_state",
+          "provider": "{brand}",
+          "purpose": "Remembers whether the app sidebar is open.",
+          "duration": "7 days",
+          "category": "Strictly necessary"
+        },
+        {
+          "name": "theme (local storage)",
+          "provider": "{brand}",
+          "purpose": "Remembers light, dark or system theme.",
+          "duration": "Until cleared",
+          "category": "Strictly necessary"
+        },
+        {
+          "name": "Sentry SDK (no cookies)",
+          "provider": "Functional Software, Inc. (Sentry)",
+          "purpose": "Reports errors that happen in your browser, without cookies, request bodies or your identity.",
+          "duration": "Not stored",
+          "category": "Error monitoring (optional)"
+        },
+        {
+          "name": "ph_<project>_posthog",
+          "provider": "PostHog, Inc.",
+          "purpose": "Pseudonymous identifier to measure how features are used.",
+          "duration": "1 year",
+          "category": "Product analytics (optional)"
+        }
+      ]
+    }
+  },
+  "auth": {
+    "signInTitle": "Sign in to {brand}",
+    "signInSubtitle": "New here? Signing in creates your account.",
+    "continueWithGoogle": "Continue with Google",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "you@example.com",
+    "sendMagicLink": "Email me a sign-in link",
+    "sending": "Sending…",
+    "magicLinkHint": "We'll email you a link that signs you in. No password needed.",
+    "termsNotice": "By continuing you agree to our <terms>Terms</terms> and <privacy>Privacy Policy</privacy>.",
+    "errorInvalidLink": "That sign-in link is invalid or has expired. Request a new one below.",
+    "errorGeneric": "Something went wrong signing you in. Please try again.",
+    "errorRateLimited": "Too many attempts. Wait a minute and try again.",
+    "errorInvalidEmail": "Enter a valid email address.",
+    "sentTitle": "Check your inbox",
+    "sentBody": "We sent a sign-in link to <strong>{email}</strong>. It expires in 10 minutes.",
+    "sentBodyNoEmail": "We sent you a sign-in link. It expires in 10 minutes.",
+    "sentHint": "Can't find it? Check your spam folder, or make sure the address is right.",
+    "resend": "Resend link",
+    "resendIn": "Resend in {seconds}s",
+    "resent": "A new link is on its way.",
+    "changeEmail": "Use a different email",
+    "devLink": "Development: open the sign-in link"
+  },
+  "onboarding": {
+    "title": "Let's get you set up",
+    "stepOf": "Step {current} of {total}",
+    "stepProfile": "Profile",
+    "stepTrial": "Free trial",
+    "stepConnect": "Connect",
+    "stepRule": "First rule",
+    "stepDone": "Done",
+    "profileTitle": "Confirm your details",
+    "profileBody": "Times in {brand} are shown in this time zone.",
+    "nameLabel": "Your name",
+    "timezoneLabel": "Time zone",
+    "timezoneDetected": "Detected from your browser: {timezone}",
+    "trialTitle": "Start your 7-day free trial",
+    "trialBody": "Pick a plan. You'll add a card on Stripe's secure checkout and pay nothing today. During the trial you can connect up to 2 calendars.",
+    "trialChoose": "Start trial with {plan}",
+    "trialActive": "Your trial is active",
+    "trialActiveBody": "You're on the {plan} plan. Let's connect your first calendar.",
+    "trialCanceled": "Checkout was canceled. Pick a plan to continue.",
+    "connectTitle": "Connect your first Google account",
+    "connectBody": "Google will ask you to allow {brand} to see and edit the calendars in that account. We only write events to calendars you choose as a rule target.",
+    "connectScopes": "Permissions requested: view your email address, and manage your calendars.",
+    "connectCta": "Connect Google account",
+    "connectFixtureCta": "Connect a demo account",
+    "connected": "{count, plural, one {# account connected} other {# accounts connected}}",
+    "connectAnother": "Connect another account",
+    "ruleTitle": "Create your first sync rule",
+    "ruleBody": "A rule copies events from one calendar into another. Make two in opposite directions for a two-way sync.",
+    "ruleCta": "Create a rule",
+    "ruleNeedsCalendars": "You need at least two calendars to create a rule. Connect another account, or use two calendars from the same account.",
+    "doneTitle": "You're all set",
+    "doneBody": "Your first sync is running. Here's what happens next:",
+    "doneItem1": "Existing events in the sync window are mirrored over the next minute.",
+    "doneItem2": "New and changed events are mirrored within seconds.",
+    "doneItem3": "Check Activity any time to see what was synced.",
+    "doneCta": "Go to dashboard"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "An overview of your connections and sync rules.",
+    "greeting": "Welcome back, {name}",
+    "connectionsCard": "Connections",
+    "connectionsHealthy": "{count, plural, =0 {No accounts yet} one {# account, all healthy} other {# accounts, all healthy}}",
+    "connectionsUnhealthy": "{count, plural, one {# needs attention} other {# need attention}}",
+    "rulesCard": "Sync rules",
+    "rulesBreakdown": "{active} active · {paused} paused · {error} with errors",
+    "last24h": "Last 24 hours",
+    "created": "Created",
+    "updated": "Updated",
+    "deleted": "Deleted",
+    "runs": "{count, plural, one {# run} other {# runs}}",
+    "needsAttention": "Needs attention",
+    "allGood": "Everything is running smoothly.",
+    "recentActivity": "Recent activity",
+    "viewAll": "View all",
+    "quickActions": "Quick actions",
+    "connectCalendar": "Connect calendar",
+    "newRule": "New rule",
+    "reauthItem": "{email} needs to be reconnected",
+    "ruleErrorItem": "Rule “{source} → {target}” stopped: {reason}",
+    "emptyTitle": "Connect a calendar to get started",
+    "emptyBody": "Once you've connected a Google account you can create sync rules."
+  },
+  "connections": {
+    "title": "Connections",
+    "subtitle": "Google accounts {brand} can read and write calendars in.",
+    "connectGoogle": "Connect Google account",
+    "connectFixture": "Connect demo account",
+    "connecting": "Redirecting…",
+    "limitReached": "You've reached your plan's limit of {count, plural, one {# calendar} other {# calendars}}.",
+    "trialLimitReached": "During the trial you can connect up to 2 calendars.",
+    "upgrade": "Upgrade",
+    "needsSubscription": "Start your free trial to connect calendars.",
+    "calendarsCount": "{count, plural, one {# calendar} other {# calendars}}",
+    "connectedCalendarsUsage": "{used} of {max} calendars in use",
+    "statusActive": "Connected",
+    "statusNeedsReauth": "Needs reconnection",
+    "statusRevoked": "Revoked",
+    "reconnect": "Reconnect",
+    "emptyTitle": "No accounts connected",
+    "emptyBody": "Connect a Google account to start mirroring events between its calendars and others.",
+    "detailSubtitle": "Calendars found in this account.",
+    "calendar": "Calendar",
+    "role": "Access",
+    "visible": "Shown in pickers",
+    "usedInRules": "Rules",
+    "watch": "Push channel",
+    "watchActive": "Active until {date}",
+    "watchNone": "Not watching",
+    "roleOwner": "Owner",
+    "roleWriter": "Can edit",
+    "roleReader": "Read only",
+    "roleFreeBusyReader": "Free/busy only",
+    "primary": "Primary",
+    "refresh": "Refresh calendars",
+    "refreshing": "Refreshing…",
+    "refreshed": "Calendar list refreshed",
+    "disconnect": "Disconnect",
+    "disconnectTitle": "Disconnect {email}?",
+    "disconnectBody": "Rules using calendars from this account will be deleted and syncing stops. This can't be undone.",
+    "disconnectDeleteMirrors": "Also remove the events {brand} mirrored from or into this account's calendars",
+    "disconnectConfirm": "Disconnect account",
+    "disconnected": "Account disconnected",
+    "hiddenUpdated": "Calendar visibility updated",
+    "reauthBanner": "{email} lost access. Reconnect it to resume syncing.",
+    "readOnlyHint": "Read-only calendars can be a source but not a target.",
+    "noRefreshToken": "Google didn't return offline access. Remove {brand} at myaccount.google.com/permissions, then connect again.",
+    "connectError": "We couldn't connect that account. Please try again.",
+    "connectedToast": "Connected {email}",
+    "backToList": "All connections",
+    "accountSince": "Connected {date}",
+    "providerGoogle": "Google",
+    "providerFixture": "Demo account",
+    "calendarsHeading": "Calendars"
+  },
+  "rules": {
+    "title": "Sync rules",
+    "subtitle": "Each rule mirrors events from a source calendar into a target calendar.",
+    "newRule": "New rule",
+    "editRule": "Edit rule",
+    "emptyTitle": "No sync rules yet",
+    "emptyBody": "A rule copies events from one calendar into another, either with full details or as private busy blocks. Create two in opposite directions for a two-way sync.",
+    "emptyNeedsConnection": "Connect a Google account first, then create your first rule.",
+    "source": "Source",
+    "target": "Target",
+    "mode": "Mode",
+    "status": "Status",
+    "lastRun": "Last run",
+    "actions": "Actions",
+    "modeFull": "Full details",
+    "modeBusy": "Busy only",
+    "statusActive": "Active",
+    "statusPaused": "Paused",
+    "statusError": "Error",
+    "statusDeleting": "Deleting",
+    "filterAll": "All",
+    "filterLabel": "Filter by status",
+    "syncNow": "Sync now",
+    "syncQueued": "Sync queued",
+    "resync": "Resync all",
+    "resyncQueued": "Full resync queued",
+    "pause": "Pause",
+    "resume": "Resume",
+    "paused": "Rule paused",
+    "resumed": "Rule resumed",
+    "deleteTitle": "Delete this rule?",
+    "deleteBody": "Syncing stops immediately. This can't be undone.",
+    "deleteMirrors": "Also remove the {count, plural, one {# event} other {# events}} this rule mirrored into the target calendar",
+    "deleteMirrorsUnknown": "Also remove the events this rule mirrored into the target calendar",
+    "deleteConfirm": "Delete rule",
+    "deleted": "Rule deleted",
+    "deleting": "Deleting…",
+    "created": "Rule created. Initial sync started.",
+    "updated": "Rule updated. Resyncing mirrors.",
+    "limitReached": "Your plan allows {count, plural, one {# rule} other {# rules}}. Upgrade to add more.",
+    "usage": "{used} of {max} rules",
+    "detailSubtitle": "{source} → {target}",
+    "mirrorsManaged": "Mirrored events",
+    "window": "Sync window",
+    "windowValue": "{past} days back · {future} days ahead",
+    "recentRuns": "Recent runs",
+    "noRuns": "This rule hasn't run yet.",
+    "reason": {
+      "connection_needs_reauth": "a connected account needs to be reconnected",
+      "subscription_ended": "your subscription ended",
+      "max_attempts": "syncing failed repeatedly",
+      "target_forbidden": "{brand} can no longer write to the target calendar",
+      "source_not_found": "the source calendar no longer exists",
+      "target_not_found": "the target calendar no longer exists",
+      "unknown": "an unexpected error occurred"
+    },
+    "form": {
+      "sourceTitle": "Copy events from",
+      "sourceHint": "Events in this calendar will be mirrored.",
+      "targetTitle": "Into",
+      "targetHint": "Only calendars you can edit are listed.",
+      "account": "Account",
+      "calendar": "Calendar",
+      "selectAccount": "Select an account",
+      "selectCalendar": "Select a calendar",
+      "noCalendars": "No calendars available",
+      "modeTitle": "How much detail?",
+      "modeFullHint": "Title, description, location and guests (as text).",
+      "modeBusyHint": "A private block marked “Busy”. No details.",
+      "preview": "Preview",
+      "previewSourceTitle": "Quarterly planning",
+      "previewSourceLocation": "Room 4B",
+      "previewSourceGuests": "Ana, Ben, Chloe",
+      "previewIn": "In {calendar}",
+      "optionsTitle": "Options",
+      "busyTitleLabel": "Busy block title",
+      "busyTitlePlaceholder": "Busy",
+      "titlePrefixLabel": "Title prefix",
+      "titlePrefixPlaceholder": "e.g. [Work]",
+      "colorLabel": "Mirror color",
+      "colorDefault": "Calendar default",
+      "includeAllDay": "Include all-day events",
+      "includeDeclined": "Include events you declined",
+      "includeTentative": "Include events you marked as maybe",
+      "includePrivate": "Include events marked private",
+      "pastDays": "Days in the past",
+      "futureDays": "Days ahead",
+      "submitCreate": "Create rule",
+      "submitUpdate": "Save changes",
+      "sameCalendar": "Source and target must be different calendars.",
+      "ruleExists": "A rule from this source to this target already exists.",
+      "recurringNote": "Recurring events are mirrored as series. Moved single occurrences are reflected; guest-level changes on single occurrences are not.",
+      "twoWayHint": "Want a two-way sync? After saving, create a second rule in the opposite direction.",
+      "previewTime": "1:00 – 2:00 PM"
+    },
+    "colors": {
+      "1": "Lavender",
+      "2": "Sage",
+      "3": "Grape",
+      "4": "Flamingo",
+      "5": "Banana",
+      "6": "Tangerine",
+      "7": "Peacock",
+      "8": "Graphite",
+      "9": "Blueberry",
+      "10": "Basil",
+      "11": "Tomato"
+    }
+  },
+  "activity": {
+    "title": "Activity",
+    "subtitle": "Every sync run, newest first.",
+    "time": "Time",
+    "rule": "Rule",
+    "trigger": "Trigger",
+    "status": "Status",
+    "changes": "Changes",
+    "duration": "Duration",
+    "error": "Error",
+    "details": "Details",
+    "triggerWebhook": "Push",
+    "triggerCron": "Scheduled",
+    "triggerManual": "Manual",
+    "triggerInitial": "Initial",
+    "statusQueued": "Queued",
+    "statusRunning": "Running",
+    "statusSucceeded": "Succeeded",
+    "statusFailed": "Failed",
+    "statusSkipped": "Skipped",
+    "changesSummary": "+{created} ~{updated} −{deleted}",
+    "changesLabel": "{created} created, {updated} updated, {deleted} deleted",
+    "emptyTitle": "No activity yet",
+    "emptyBody": "Sync runs appear here as soon as a rule runs.",
+    "filterRule": "Rule",
+    "filterStatus": "Status",
+    "filterRange": "Period",
+    "allRules": "All rules",
+    "allStatuses": "All statuses",
+    "range24h": "Last 24 hours",
+    "range7d": "Last 7 days",
+    "range30d": "Last 30 days",
+    "range90d": "Last 90 days",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {page}",
+    "deletedRule": "Deleted rule"
+  },
+  "billing": {
+    "title": "Billing",
+    "subtitle": "Your plan, usage and invoices.",
+    "currentPlan": "Current plan",
+    "planPro": "Pro",
+    "planMax": "Max",
+    "planTrial": "Trial",
+    "planNone": "No plan",
+    "planPaused": "Paused",
+    "planSelfHosted": "Self-hosted",
+    "badgeTrial": "Trial · {days, plural, one {# day left} other {# days left}}",
+    "trialEnds": "Your free trial ends on {date}. Your card will be charged {price} then.",
+    "renews": "Renews on {date}.",
+    "cancelsOn": "Cancels on {date}. Syncing continues until then.",
+    "pastDue": "Your last payment failed. Update your card to keep syncing.",
+    "usage": "Usage",
+    "calendarsUsage": "Connected calendars",
+    "rulesUsage": "Sync rules",
+    "of": "{used} of {max}",
+    "ofUnlimited": "{used} of unlimited",
+    "switchTo": "Switch to {plan}",
+    "switchBlocked": "Reduce your usage to {calendars} calendars and {rules} rules before switching to Pro.",
+    "manage": "Manage billing",
+    "manageHint": "Update your card, download invoices or cancel in the Stripe customer portal.",
+    "invoices": "Invoices",
+    "invoicesHint": "Invoices and receipts are available in the customer portal.",
+    "openPortal": "Open customer portal",
+    "choosePlan": "Choose a plan",
+    "subscribe": "Subscribe to {plan}",
+    "startTrial": "Start free trial",
+    "resubscribe": "Resubscribe",
+    "pausedTitle": "Your subscription has ended",
+    "pausedBody": "Syncing is paused. Your rules and connections will be deleted on {date} unless you resubscribe. Events already mirrored stay in your calendars.",
+    "removeMirrors": "Remove mirrored events",
+    "removeMirrorsTitle": "Remove all mirrored events?",
+    "removeMirrorsBody": "Every event {brand} created in your calendars will be deleted. Your original events are not touched.",
+    "removeMirrorsQueued": "Removing mirrored events. This may take a few minutes.",
+    "calendarLimitReason": "You've reached your plan's calendar limit. Upgrade to connect more.",
+    "selfHostedBody": "Billing is disabled on this instance. Every account has unlimited calendars and rules.",
+    "noSubscription": "You don't have a subscription yet. Start a free trial to connect calendars.",
+    "checkoutError": "We couldn't open checkout. Please try again.",
+    "portalError": "We couldn't open the billing portal. Please try again."
+  },
+  "banners": {
+    "trialEnding": "Your trial ends in {days, plural, one {# day} other {# days}}. Your {plan} plan starts on {date}.",
+    "paymentFailed": "Your last payment failed. Update your payment method to keep syncing.",
+    "paused": "Syncing is paused because your subscription ended. Your data will be deleted on {date}.",
+    "reauth": "{count, plural, one {A connected account needs} other {# connected accounts need}} to be reconnected.",
+    "noSubscription": "Start your free trial to connect calendars and create rules.",
+    "fix": "Fix",
+    "manageBilling": "Manage billing",
+    "resubscribe": "Resubscribe",
+    "startTrial": "Start trial"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your profile and preferences.",
+    "profile": "Profile",
+    "profileHint": "How you appear in {brand}.",
+    "name": "Name",
+    "email": "Email",
+    "emailHint": "Your sign-in email can't be changed.",
+    "timezone": "Time zone",
+    "timezoneHint": "Times across the app are shown in this time zone.",
+    "language": "Language",
+    "appearance": "Appearance",
+    "appearanceHint": "Choose how {brand} looks on this device.",
+    "notifications": "Email notifications",
+    "notificationsHint": "We'll always email you about billing and security.",
+    "notifyProblems": "Connection and sync problems",
+    "notifyProblemsHint": "When an account needs to be reconnected or a rule stops.",
+    "weeklySummary": "Weekly summary",
+    "saved": "Settings saved",
+    "dangerZone": "Danger zone",
+    "deleteAccount": "Delete account",
+    "deleteAccountHint": "Permanently delete your account, connections, rules and history.",
+    "deleteTitle": "Delete your account?",
+    "deleteBody": "This permanently deletes your account and everything in it, and cancels your subscription. This can't be undone.",
+    "deleteMirrors": "Also remove every event {brand} mirrored into your calendars",
+    "deleteConfirmLabel": "Type {word} to confirm",
+    "deleteConfirmWord": "DELETE",
+    "deleteConfirm": "Delete my account",
+    "deleting": "Deleting…",
+    "privacy": "Privacy",
+    "privacyHint": "Manage your consent and get a copy of your data.",
+    "cookiePreferences": "Cookie preferences",
+    "cookiePreferencesHint": "Change or withdraw your consent to optional cookies.",
+    "exportData": "Download my data",
+    "exportDataHint": "A JSON file with your profile, connected accounts (never tokens), calendars, rules and sync history.",
+    "privacyRights": "Read about your rights"
+  },
+  "sync": {
+    "busyTitle": "Busy",
+    "attendeesHeading": "Guests",
+    "mirroredFooter": "Mirrored by {brand}"
+  },
+  "errors": {
+    "title": "Something went wrong",
+    "body": "An unexpected error occurred. It has been reported and we'll look into it.",
+    "notFoundTitle": "Page not found",
+    "notFoundBody": "The page you're looking for doesn't exist or has moved.",
+    "goHome": "Go home",
+    "unauthorized": "Your session has expired. Please sign in again.",
+    "forbidden": "You don't have access to that.",
+    "notFound": "That item no longer exists.",
+    "validation": "Please check the highlighted fields.",
+    "rateLimited": "You're doing that too often. Please wait a moment.",
+    "noSubscription": "Start your free trial first.",
+    "calendarLimit": "You've reached your plan's calendar limit.",
+    "ruleLimit": "You've reached your plan's rule limit.",
+    "paused": "Your subscription has ended. Resubscribe to resume syncing.",
+    "unknown": "Something went wrong. Please try again.",
+    "required": "This field is required.",
+    "invalidTimezone": "Choose a valid time zone.",
+    "tooLong": "Must be {max} characters or fewer.",
+    "range": "Must be between {min} and {max}.",
+    "tooLong30": "Must be 30 characters or fewer.",
+    "tooLong60": "Must be 60 characters or fewer.",
+    "tooLong80": "Must be 80 characters or fewer.",
+    "pastDaysRange": "Enter a number between 0 and 30.",
+    "futureDaysRange": "Enter a number between 7 and 365.",
+    "confirmDelete": "Type DELETE to confirm.",
+    "conflict": "That already exists."
+  },
+  "emails": {
+    "footer": "You're receiving this email because you have a {brand} account.",
+    "footerAddress": "{entity} · {address}",
+    "signature": "— The {brand} team",
+    "magicLink": {
+      "subject": "Your {brand} sign-in link",
+      "preview": "Sign in to {brand}",
+      "heading": "Sign in to {brand}",
+      "body": "Click the button below to sign in. The link expires in 10 minutes and can be used once.",
+      "cta": "Sign in",
+      "ignore": "If you didn't request this, you can safely ignore this email."
+    },
+    "welcome": {
+      "subject": "Welcome to {brand}",
+      "preview": "Your calendars are about to get along",
+      "heading": "Welcome, {name}",
+      "body": "Thanks for signing up. Connect your Google accounts and create your first rule to start mirroring events.",
+      "cta": "Open {brand}"
+    },
+    "connectionNeedsReauth": {
+      "subject": "Action needed: reconnect {email}",
+      "preview": "Syncing is paused for {email}",
+      "heading": "Reconnect {email}",
+      "body": "Google stopped accepting {brand}'s access to {email}, usually because the permission was revoked or the password changed. Rules using this account are paused until you reconnect it.",
+      "cta": "Reconnect account"
+    },
+    "ruleError": {
+      "subject": "A sync rule stopped working",
+      "preview": "{source} → {target} needs attention",
+      "heading": "A sync rule stopped",
+      "body": "The rule {source} → {target} stopped after repeated failures: {reason}. Open the rule to see details and try again.",
+      "cta": "View rule"
+    },
+    "trialConverting": {
+      "subject": "Your {brand} trial ends in 3 days",
+      "preview": "Your {plan} plan starts on {date}",
+      "heading": "Your trial ends on {date}",
+      "body": "Your {plan} plan starts on {date} and your card will be charged {price}. Nothing to do if you'd like to keep syncing. You can change plans or cancel anytime.",
+      "cta": "Manage billing"
+    },
+    "paymentFailed": {
+      "subject": "Your {brand} payment failed",
+      "preview": "Update your card to keep syncing",
+      "heading": "We couldn't charge your card",
+      "body": "Your latest {brand} payment didn't go through. We'll retry automatically, but please update your payment method to avoid interruptions.",
+      "cta": "Update payment method"
+    },
+    "subscriptionPaused": {
+      "subject": "Syncing is paused",
+      "preview": "Your {brand} subscription has ended",
+      "heading": "Your subscription has ended",
+      "body": "Syncing is paused. We'll keep your rules and connections until {date}. Resubscribe before then to pick up where you left off. Events already mirrored stay in your calendars.",
+      "cta": "Resubscribe"
+    },
+    "dataDeletion": {
+      "subject": "Your {brand} data will be deleted in 7 days",
+      "preview": "Resubscribe before {date} to keep your setup",
+      "heading": "Your data will be deleted on {date}",
+      "body": "Your subscription ended and syncing has been paused. On {date} we'll delete your connections, rules and sync history. Resubscribe before then to keep them.",
+      "cta": "Resubscribe"
+    },
+    "subscriptionConfirmed": {
+      "subject": "You're subscribed to {brand} {plan}",
+      "preview": "Thanks for subscribing",
+      "heading": "Thanks for subscribing",
+      "body": "Your {plan} plan is active. Syncing continues without interruption.",
+      "cta": "Open {brand}"
+    }
+  },
+  "consent": {
+    "bannerLabel": "Cookie consent",
+    "title": "Your privacy choices",
+    "body": "We use strictly necessary cookies to run the service. With your permission we'd also use optional tools to detect errors in your browser and understand how the product is used. Nothing optional runs unless you accept. Read our <cookies>Cookie Policy</cookies> and <privacy>Privacy Policy</privacy>.",
+    "acceptAll": "Accept all",
+    "rejectAll": "Reject all",
+    "customize": "Customize",
+    "save": "Save choices",
+    "preferencesTitle": "Cookie preferences",
+    "preferencesBody": "Choose which optional technologies we may use. You can change your mind at any time. Details are in our <cookies>Cookie Policy</cookies>.",
+    "alwaysOn": "Always on",
+    "necessaryTitle": "Strictly necessary",
+    "necessaryBody": "Sign-in session, security, your language and display preferences, and this choice. Required for the service to work.",
+    "errorsTitle": "Error monitoring",
+    "errorsBody": "Sends technical error reports from your browser (Sentry) so we can fix bugs. Uses no cookies and never collects your calendar data.",
+    "analyticsTitle": "Product analytics",
+    "analyticsBody": "Measures how features are used (PostHog) with a pseudonymous identifier, so we can improve the product.",
+    "noOptional": "This instance doesn't use any optional cookies or trackers.",
+    "settingsLink": "Cookie settings"
+  }
+}
