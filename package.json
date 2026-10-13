@@ -1,6 +1,6 @@
 {
   "name": "calendblade",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Open-source calendar sync: mirror events between your Google calendars with full details or private busy blocks.",
   "license": "AGPL-3.0-only",
   "private": true,
