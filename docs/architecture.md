@@ -70,7 +70,7 @@ Mirrors are written **without attendees** (guests become text in the description
 A Postgres table (`job`) processed by `processJobs({ budgetMs })`:
 
 - Dedupe keys are unique among **pending** jobs (partial unique index), so bursts coalesce while a change arriving during a run still queues a follow-up.
-- Claims use `FOR UPDATE SKIP LOCKED`, so overlapping cron calls and `after()` callbacks are safe.
+- Claims use `FOR UPDATE SKIP LOCKED`, so overlapping cron calls and `after()` callbacks are safe. Push-channel jobs (`renew_watch`) are claimed and run before syncs, so a long first sync can't leave a new rule without real-time updates.
 - Retries back off 30 s → 2 m → 10 m → 30 m → 2 h; after `max_attempts` a job is dead and its rules are marked as errored. Stale claims are released after 10 minutes.
 - Kinds: `sync_rule`, `full_resync_rule`, `renew_watch`, `teardown_rule`, `teardown_connection`. Teardowns respect the time budget and resume where they stopped.
 

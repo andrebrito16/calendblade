@@ -43,10 +43,7 @@ export async function ConnectButtons({
   }
 
   if (used >= entitlements.maxCalendars) {
-    const reason =
-      entitlements.plan === "trial"
-        ? t("trialLimitReached")
-        : t("limitReached", { count: entitlements.maxCalendars });
+    const reason = t("limitReached", { count: entitlements.maxCalendars });
     return (
       <div className="flex flex-wrap items-center gap-2">
         <Tooltip>
