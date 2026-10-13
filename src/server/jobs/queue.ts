@@ -53,17 +53,30 @@ export async function enqueue(input: EnqueueInput) {
   return row;
 }
 
-/** Atomically claims up to `limit` due jobs. Safe across parallel workers. */
+/**
+ * Push-channel jobs are quick and decide whether later changes arrive in real
+ * time, so they run before syncs: a long first sync that spends the budget must
+ * not leave a new rule without a channel until the next cron.
+ */
+const kindPriority = sql<number>`case when ${job.kind} = 'renew_watch' then 0 else 1 end`;
+
+function byPriority(a: Job, b: Job) {
+  const rank = (row: Job) => (row.kind === "renew_watch" ? 0 : 1);
+  return rank(a) - rank(b) || a.runAt.getTime() - b.runAt.getTime();
+}
+
+/** Atomically claims up to `limit` due jobs, in run order. Safe across parallel workers. */
 export async function claimJobs(workerId: string, limit: number): Promise<Job[]> {
   const due = db
     .select({ id: job.id })
     .from(job)
     .where(and(eq(job.status, "pending"), lte(job.runAt, new Date())))
-    .orderBy(job.runAt)
+    .orderBy(kindPriority, job.runAt)
     .limit(limit)
     .for("update", { skipLocked: true });
 
-  return db
+  // UPDATE ... RETURNING doesn't preserve the subquery's order.
+  const claimed = await db
     .update(job)
     .set({
       status: "claimed",
@@ -73,6 +86,7 @@ export async function claimJobs(workerId: string, limit: number): Promise<Job[]>
     })
     .where(inArray(job.id, due))
     .returning();
+  return claimed.sort(byPriority);
 }
 
 export async function completeJob(id: string) {

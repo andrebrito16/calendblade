@@ -43,6 +43,23 @@ describe("job queue", () => {
     expect([...a, ...b].every((row) => row.attempts === 1 && row.status === "claimed")).toBe(true);
   });
 
+  it("claims push-channel jobs before syncs, whatever the row order", async () => {
+    await enqueue({ kind: "full_resync_rule", runAt: new Date(Date.now() - 1_000) });
+    await enqueue({ kind: "sync_rule", runAt: new Date(Date.now() - 500) });
+    await enqueue({ kind: "renew_watch" });
+    expect((await claimJobs("w1", 5)).map((row) => row.kind)).toEqual([
+      "renew_watch",
+      "full_resync_rule",
+      "sync_rule",
+    ]);
+  });
+
+  it("prefers push-channel jobs when more are due than fit in a batch", async () => {
+    for (let i = 0; i < 3; i++) await enqueue({ kind: "sync_rule", runAt: new Date(Date.now() - 1_000) });
+    await enqueue({ kind: "renew_watch" });
+    expect((await claimJobs("w1", 1)).map((row) => row.kind)).toEqual(["renew_watch"]);
+  });
+
   it("retries with exponential backoff, then dead-letters", async () => {
     await enqueue({ kind: "sync_rule", maxAttempts: 2 });
     let [current] = await claimJobs("w", 1);
