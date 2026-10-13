@@ -54,3 +54,5 @@ next-env.d.ts
 /test-results
 /blob-report
 
+# Videos
+/brag-output/
