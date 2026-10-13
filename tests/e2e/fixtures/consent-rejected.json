@@ -1,0 +1,15 @@
+{
+  "cookies": [
+    {
+      "name": "cb_consent",
+      "value": "%7B%22version%22%3A1%2C%22decidedAt%22%3A%222026-10-13T00%3A00%3A00.000Z%22%2C%22errors%22%3Afalse%2C%22analytics%22%3Afalse%7D",
+      "domain": "localhost",
+      "path": "/",
+      "expires": 4102444800,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": []
+}
