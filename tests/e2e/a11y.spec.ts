@@ -3,6 +3,10 @@ import { expect, type Page, test } from "@playwright/test";
 import { signIn } from "./helpers";
 
 async function expectNoSeriousViolations(page: Page) {
+  // Audit the hydrated, settled page: a control caught mid-fade (e.g. a button enabling on
+  // hydration) reads as a contrast failure.
+  await page.waitForLoadState("networkidle");
+  await page.evaluate(() => Promise.all(document.getAnimations().map((animation) => animation.finished)));
   const results = await new AxeBuilder({ page })
     .exclude("nextjs-portal")
     .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])

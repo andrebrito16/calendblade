@@ -2,7 +2,7 @@
 
 import { Loader2, Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,7 +28,6 @@ export function SignInForm({
   const t = useTranslations("auth");
   const common = useTranslations("common");
   const router = useRouter();
-  const [email, setEmail] = useState("");
   const [pending, setPending] = useState<"google" | "email" | null>(null);
   const [error, setError] = useState<string | null>(
     initialError
@@ -38,6 +37,13 @@ export function SignInForm({
       : null,
   );
   const callbackURL = safeNext(next);
+  // The input is uncontrolled so text typed before hydration isn't lost; submitting stays
+  // disabled until then so the browser can't fall back to a native GET with the email in the URL.
+  const hydrated = useSyncExternalStore(
+    subscribeNoop,
+    () => true,
+    () => false,
+  );
 
   async function signInWithGoogle() {
     setPending("google");
@@ -56,6 +62,7 @@ export function SignInForm({
 
   async function sendMagicLink(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const email = String(new FormData(event.currentTarget).get("email") ?? "").trim();
     if (!/^\S+@\S+\.\S+$/.test(email)) {
       setError(t("errorInvalidEmail"));
       return;
@@ -115,14 +122,12 @@ export function SignInForm({
             autoComplete="email"
             inputMode="email"
             placeholder={t("emailPlaceholder")}
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
             disabled={pending !== null}
             required
             aria-describedby="magic-link-hint"
           />
         </div>
-        <Button type="submit" className="w-full" size="lg" disabled={pending !== null || !email}>
+        <Button type="submit" className="w-full" size="lg" disabled={pending !== null || !hydrated}>
           {pending === "email" ? <Loader2 className="animate-spin" /> : <Mail />}
           {pending === "email" ? t("sending") : t("sendMagicLink")}
         </Button>
@@ -132,4 +137,8 @@ export function SignInForm({
       </form>
     </div>
   );
+}
+
+function subscribeNoop() {
+  return () => {};
 }
