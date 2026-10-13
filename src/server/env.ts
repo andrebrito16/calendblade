@@ -70,6 +70,17 @@ const schema = baseSchema.superRefine((value, ctx) => {
         });
       }
     }
+    // Checkout takes a price id; a product id (prod_…) only fails once a user clicks "subscribe".
+    for (const key of ["STRIPE_PRICE_PRO_MONTHLY", "STRIPE_PRICE_MAX_MONTHLY"] as const) {
+      const price = value[key];
+      if (price && !price.startsWith("price_")) {
+        ctx.addIssue({
+          code: "custom",
+          path: [key],
+          message: `${key} must be a Stripe price id (price_…), not "${price.split("_")[0]}_…"`,
+        });
+      }
+    }
   }
   if (value.EMAIL_TRANSPORT === "resend" && !value.RESEND_API_KEY) {
     ctx.addIssue({
